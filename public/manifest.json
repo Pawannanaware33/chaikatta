@@ -1,0 +1,17 @@
+{
+  "short_name": "Chai Katta",
+  "name": "Chai Katta — Tea Shop POS",
+  "description": "Mobile-first Point of Sale & Analytics System for Chai Katta tea shop",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#FAF7F2",
+  "theme_color": "#FAF7F2",
+  "display": "standalone",
+  "orientation": "any"
+}
