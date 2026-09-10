@@ -53,6 +53,27 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({
     }
   }, []);
 
+  // Enable 'Enter' key to seamlessly start Next Order
+  useEffect(() => {
+    let handleKeyDown: ((e: KeyboardEvent) => void) | null = null;
+    const timer = setTimeout(() => {
+      handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          onNewOrder();
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+    }, 150);
+
+    return () => {
+      clearTimeout(timer);
+      if (handleKeyDown) {
+        window.removeEventListener('keydown', handleKeyDown);
+      }
+    };
+  }, [onNewOrder]);
+
   return (
     <div
       role="dialog"
@@ -152,10 +173,12 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({
 
           <button
             type="button"
+            autoFocus
             onClick={onNewOrder}
-            className="group h-11 rounded-xl bg-stone-900 hover:bg-black text-white font-extrabold text-xs flex items-center justify-center gap-1.5 active:scale-[0.97] transition-all shadow-sm svelte-spring-press"
+            className="group h-11 rounded-xl bg-stone-900 hover:bg-black text-white font-extrabold text-xs flex items-center justify-center gap-1.5 active:scale-[0.97] transition-all shadow-sm svelte-spring-press cursor-pointer"
           >
             <span>Next Order</span>
+            <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-stone-800 text-[10px] font-mono font-bold text-amber-200 border border-stone-700">↵ Enter</kbd>
             <ArrowRight className="w-3.5 h-3.5 text-stone-400 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>

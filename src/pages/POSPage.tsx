@@ -408,6 +408,13 @@ export const POSPage: React.FC<POSPageProps> = ({
               </div>
 
               <div className="flex items-center justify-between py-1 px-2.5 rounded-lg bg-stone-50/80 border border-stone-100">
+                <span className="text-stone-600 font-medium">Next order</span>
+                <kbd className="px-1.5 py-0.5 rounded bg-white text-stone-800 font-mono font-black text-[11px] border border-stone-200 shadow-2xs">
+                  Enter
+                </kbd>
+              </div>
+
+              <div className="flex items-center justify-between py-1 px-2.5 rounded-lg bg-stone-50/80 border border-stone-100">
                 <span className="text-stone-600 font-medium">Close</span>
                 <kbd className="px-1.5 py-0.5 rounded bg-white text-stone-800 font-mono font-black text-[11px] border border-stone-200 shadow-2xs">
                   Esc

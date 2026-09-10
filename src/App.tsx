@@ -63,8 +63,17 @@ export function App() {
     setSubmitError(null);
   };
 
-  // Global Escape key handler to close open dialogs without clearing cart
+  // Global Escape & Enter key handler to manage open dialogs and Next Order
   useEffect(() => {
+    let enterTimeout: ReturnType<typeof setTimeout> | null = null;
+    let canProcessEnter = false;
+
+    if (showReceiptModal || showSuccessModal) {
+      enterTimeout = setTimeout(() => {
+        canProcessEnter = true;
+      }, 150);
+    }
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         if (showReceiptModal) {
@@ -74,10 +83,18 @@ export function App() {
         } else if (showUpiQrModal) {
           setShowUpiQrModal(false);
         }
+      } else if (e.key === 'Enter') {
+        if ((showSuccessModal || showReceiptModal) && canProcessEnter) {
+          e.preventDefault();
+          handleNewOrder();
+        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      if (enterTimeout) clearTimeout(enterTimeout);
+    };
   }, [showReceiptModal, showSuccessModal, showUpiQrModal]);
 
   const handlePlaceOrder = async () => {
