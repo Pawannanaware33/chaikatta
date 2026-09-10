@@ -22,25 +22,25 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-stone-950/65 backdrop-blur-sm overflow-y-auto animate-fade-in"
+      className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-4 bg-stone-950/65 backdrop-blur-sm overflow-y-auto animate-fade-in"
     >
-      <div className="bg-white w-full max-w-sm rounded-3xl p-5 sm:p-6 shadow-2xl border border-stone-200/80 relative my-auto animate-scale-in transition-colors duration-200 ring-1 ring-black/[0.04]">
+      <div className="bg-white w-full max-w-sm max-h-[92dvh] flex flex-col rounded-3xl p-4 sm:p-6 shadow-2xl border border-stone-200/80 relative my-auto animate-scale-in transition-colors duration-200 ring-1 ring-black/[0.04] overflow-hidden">
         {/* Close Button (Hidden on Print) */}
         <button
           type="button"
           onClick={onClose}
           aria-label="Close receipt"
-          className="no-print absolute top-4 right-4 w-7 h-7 rounded-full bg-stone-100 text-stone-500 hover:text-stone-800 hover:bg-stone-200 flex items-center justify-center transition-colors"
+          className="no-print absolute top-3 right-3 sm:top-4 sm:right-4 w-7 h-7 rounded-full bg-stone-100 text-stone-500 hover:text-stone-800 hover:bg-stone-200 flex items-center justify-center transition-colors cursor-pointer z-10"
         >
           <X className="w-3.5 h-3.5" />
         </button>
 
         {/* Printable Receipt Container with Thermal Paper Eject Animation */}
-        <div className="no-print h-1.5 w-28 bg-stone-300/80 rounded-full mx-auto mb-2.5 shadow-inner" />
+        <div className="no-print h-1.5 w-24 sm:w-28 bg-stone-300/80 rounded-full mx-auto mb-2 shadow-inner flex-shrink-0" />
         
         <div
           id="printable-receipt"
-          className="font-mono text-stone-800 text-xs sm:text-sm select-text bg-white p-4 rounded-xl border border-stone-200/80 shadow-sm animate-receipt-eject relative overflow-hidden"
+          className="flex-1 min-h-0 overflow-y-auto font-mono text-stone-800 text-xs sm:text-sm select-text bg-white p-3.5 sm:p-4 rounded-xl border border-stone-200/80 shadow-sm animate-receipt-eject relative"
         >
           {/* Brand Header */}
           <div className="text-center pb-3 border-b border-dashed border-stone-300">

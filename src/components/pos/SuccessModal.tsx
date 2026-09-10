@@ -57,9 +57,9 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-stone-950/65 backdrop-blur-sm animate-fade-in"
+      className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-4 bg-stone-950/65 backdrop-blur-sm overflow-y-auto animate-fade-in"
     >
-      <div className="bg-white w-full max-w-sm rounded-3xl p-6 sm:p-7 shadow-2xl border border-stone-200/80 text-center animate-spring-bounce transition-all duration-300 relative overflow-hidden ring-1 ring-black/[0.04]">
+      <div className="bg-white w-full max-w-sm max-h-[92dvh] overflow-y-auto rounded-3xl p-5 sm:p-7 shadow-2xl border border-stone-200/80 text-center my-auto animate-spring-bounce transition-all duration-300 relative ring-1 ring-black/[0.04]">
         
         {/* Animated Drawing Checkmark Seal with Expanding Pulse Ring */}
         <div className="relative w-16 h-16 mx-auto mb-2.5 flex items-center justify-center">

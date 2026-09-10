@@ -30,45 +30,45 @@ export const UpiQrModal: React.FC<UpiQrModalProps> = ({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-stone-950/65 backdrop-blur-sm animate-fade-in"
+      className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-4 bg-stone-950/65 backdrop-blur-sm overflow-y-auto animate-fade-in"
     >
-      <div className="bg-white w-full max-w-sm rounded-3xl p-6 sm:p-7 shadow-2xl border border-stone-200/80 text-center relative animate-scale-in transition-colors duration-200 ring-1 ring-black/[0.04]">
+      <div className="bg-white w-full max-w-sm max-h-[92dvh] overflow-y-auto rounded-3xl p-4 sm:p-6 shadow-2xl border border-stone-200/80 text-center relative my-auto animate-scale-in transition-colors duration-200 ring-1 ring-black/[0.04]">
         {/* Close Button */}
         <button
           type="button"
           onClick={onClose}
           disabled={isSubmitting}
-          className="absolute top-4 right-4 w-7 h-7 rounded-full bg-stone-100 text-stone-500 hover:text-stone-800 hover:bg-stone-200 flex items-center justify-center transition-colors disabled:opacity-50"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 w-7 h-7 rounded-full bg-stone-100 text-stone-500 hover:text-stone-800 hover:bg-stone-200 flex items-center justify-center transition-colors disabled:opacity-50 cursor-pointer z-10"
           aria-label="Close QR modal"
         >
           <X className="w-3.5 h-3.5" />
         </button>
 
         {/* Brand Header */}
-        <div className="mb-4">
-          <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center mx-auto mb-2 border border-amber-200/70 shadow-2xs transition-colors">
+        <div className="mb-3">
+          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center mx-auto mb-1.5 border border-amber-200/70 shadow-2xs transition-colors">
             <QrCode className="w-4 h-4" />
           </div>
-          <h3 className="text-base font-extrabold text-stone-900 tracking-tight transition-colors">
+          <h3 className="text-sm sm:text-base font-extrabold text-stone-900 tracking-tight transition-colors">
             Scan & Pay via UPI
           </h3>
-          <p className="text-xs text-stone-500 font-medium mt-0.5">
+          <p className="text-[11px] text-stone-500 font-medium mt-0.5">
             CHAI KATTA • Instant Payment
           </p>
         </div>
 
         {/* Amount Badge */}
-        <div className="bg-amber-50/80 rounded-xl py-2 px-5 mb-4 border border-amber-200/80 inline-block mx-auto shadow-2xs animate-fade-in">
-          <span className="text-[10px] text-amber-800 font-bold uppercase tracking-wider block">
+        <div className="bg-amber-50/80 rounded-xl py-1.5 px-4 mb-3 border border-amber-200/80 inline-block mx-auto shadow-2xs animate-fade-in">
+          <span className="text-[9.5px] text-amber-800 font-bold uppercase tracking-wider block">
             Amount Due
           </span>
-          <span className="text-xl font-black text-amber-950 font-mono tracking-tight tabular-nums">
+          <span className="text-lg sm:text-xl font-black text-amber-950 font-mono tracking-tight tabular-nums">
             <AnimatedNumber value={amount} type="currency" duration={450} />
           </span>
         </div>
 
         {/* High-Contrast Crisp QR Code Container with Animated Laser Scanline */}
-        <div className="relative p-3.5 bg-white rounded-2xl border border-stone-200 shadow-md inline-block mx-auto mb-4 overflow-hidden">
+        <div className="relative p-2.5 sm:p-3 bg-white rounded-2xl border border-stone-200 shadow-md inline-block mx-auto mb-3 overflow-hidden">
           {/* Laser Scanner Beam */}
           <div
             className="absolute inset-x-2 h-0.5 bg-gradient-to-r from-transparent via-emerald-500 to-transparent shadow-[0_0_8px_rgba(16,185,129,0.9)] animate-scanline pointer-events-none z-20"
@@ -76,15 +76,15 @@ export const UpiQrModal: React.FC<UpiQrModalProps> = ({
           />
           <QRCodeSVG
             value={upiUrl}
-            size={170}
+            size={145}
             level="M"
             includeMargin={true}
-            className="rounded-md"
+            className="rounded-md mx-auto"
           />
         </div>
 
         {/* Supported Payment Apps */}
-        <div className="flex items-center justify-center gap-1.5 mb-4 text-[10px] font-medium text-stone-500">
+        <div className="flex items-center justify-center gap-1.5 mb-3 text-[10px] font-medium text-stone-500">
           <span className="px-2 py-0.5 rounded-md bg-stone-100 border border-stone-200/60 shadow-2xs">GPay</span>
           <span className="px-2 py-0.5 rounded-md bg-stone-100 border border-stone-200/60 shadow-2xs">PhonePe</span>
           <span className="px-2 py-0.5 rounded-md bg-stone-100 border border-stone-200/60 shadow-2xs">Paytm</span>

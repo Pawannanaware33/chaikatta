@@ -150,7 +150,7 @@ export function App() {
 
   return (
     <div className={`flex flex-col text-stone-900 selection:bg-stone-200 ${
-      currentTab === 'pos' ? 'h-screen overflow-hidden' : 'min-h-screen'
+      currentTab === 'pos' ? 'h-[100dvh] max-h-[100dvh] overflow-hidden' : 'min-h-[100dvh]'
     }`}>
       {/* Top Navbar & Mobile Bottom Bar */}
       <Navbar currentTab={currentTab} onSelectTab={setCurrentTab} />
@@ -175,8 +175,8 @@ export function App() {
       )}
 
       {/* Main View Area with Svelte-Style View Transition */}
-      <main className={`flex-1 flex flex-col ${currentTab === 'pos' ? 'min-h-0 overflow-hidden' : ''}`}>
-        <div key={currentTab} className={`flex-1 flex flex-col ${currentTab === 'pos' ? 'min-h-0 overflow-hidden' : ''} animate-svelte-fly`}>
+      <main className={`flex-1 flex flex-col ${currentTab === 'pos' ? 'min-h-0 overflow-hidden' : 'min-h-0'}`}>
+        <div key={currentTab} className={`flex-1 flex flex-col ${currentTab === 'pos' ? 'min-h-0 overflow-hidden' : 'min-h-0'} animate-svelte-fly`}>
           {currentTab === 'pos' ? (
             <POSPage
               cartQuantities={cartQuantities}

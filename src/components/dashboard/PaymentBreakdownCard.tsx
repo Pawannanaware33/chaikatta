@@ -42,41 +42,41 @@ export const PaymentBreakdownCard: React.FC<PaymentBreakdownCardProps> = ({ paym
         </div>
 
         {/* Comparison Details */}
-        <div className="grid grid-cols-2 gap-3.5">
+        <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
           {/* CASH */}
-          <div className="p-4 rounded-xl bg-stone-50/70 border border-stone-200/70 transition-colors">
+          <div className="p-3 sm:p-4 rounded-xl bg-stone-50/70 border border-stone-200/70 transition-colors">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-1.5 text-xs font-semibold text-stone-700">
                 <Banknote className="w-3.5 h-3.5 text-stone-600" />
                 <span>Cash</span>
               </div>
-              <span className="text-[11px] font-bold font-mono text-stone-700 bg-stone-200/70 px-1.5 py-0.5 rounded">
+              <span className="text-[10px] sm:text-[11px] font-bold font-mono text-stone-700 bg-stone-200/70 px-1.5 py-0.5 rounded">
                 <AnimatedNumber value={cash.percentage} type="percent" duration={500} />
               </span>
             </div>
-            <div className="text-xl font-bold text-stone-900 font-mono transition-colors">
+            <div className="text-lg sm:text-xl font-bold text-stone-900 font-mono transition-colors tabular-nums">
               <AnimatedNumber value={cash.revenue} type="currency" duration={500} />
             </div>
-            <div className="text-[11px] text-stone-500 mt-0.5">
+            <div className="text-[10.5px] sm:text-[11px] text-stone-500 mt-0.5">
               <AnimatedNumber value={cash.orders} type="number" duration={400} /> {cash.orders === 1 ? 'order' : 'orders'}
             </div>
           </div>
 
           {/* UPI */}
-          <div className="p-4 rounded-xl bg-stone-50/70 border border-stone-200/70 transition-colors">
+          <div className="p-3 sm:p-4 rounded-xl bg-stone-50/70 border border-stone-200/70 transition-colors">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-1.5 text-xs font-semibold text-stone-700">
                 <QrCode className="w-3.5 h-3.5 text-stone-600" />
                 <span>UPI</span>
               </div>
-              <span className="text-[11px] font-bold font-mono text-stone-700 bg-stone-200/70 px-1.5 py-0.5 rounded">
+              <span className="text-[10px] sm:text-[11px] font-bold font-mono text-stone-700 bg-stone-200/70 px-1.5 py-0.5 rounded">
                 <AnimatedNumber value={upi.percentage} type="percent" duration={500} />
               </span>
             </div>
-            <div className="text-xl font-bold text-stone-900 font-mono transition-colors">
+            <div className="text-lg sm:text-xl font-bold text-stone-900 font-mono transition-colors tabular-nums">
               <AnimatedNumber value={upi.revenue} type="currency" duration={500} />
             </div>
-            <div className="text-[11px] text-stone-500 mt-0.5">
+            <div className="text-[10.5px] sm:text-[11px] text-stone-500 mt-0.5">
               <AnimatedNumber value={upi.orders} type="number" duration={400} /> {upi.orders === 1 ? 'order' : 'orders'}
             </div>
           </div>

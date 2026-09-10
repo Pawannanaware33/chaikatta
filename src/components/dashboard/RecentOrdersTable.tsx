@@ -55,8 +55,56 @@ export const RecentOrdersTable: React.FC<RecentOrdersTableProps> = ({
           <p className="font-medium">No orders found for this time period.</p>
         </div>
       ) : (
-        <div className="flex-1 min-h-0 overflow-y-auto overflow-x-auto rounded-xl border border-stone-200/70 bg-white">
-          <table className="w-full text-left border-collapse min-w-[550px]">
+        <div className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-stone-200/70 bg-white">
+          {/* Mobile Order Cards List (Phones) */}
+          <div className="sm:hidden divide-y divide-stone-100">
+            {sortedOrders.map((order) => {
+              const itemsSummary = (order.items || [])
+                .map((i) => `${i.name} × ${i.quantity}`)
+                .join(', ') || 'Item(s)';
+
+              return (
+                <div
+                  key={order.id}
+                  onClick={() => onSelectOrder(order)}
+                  className="p-3 hover:bg-stone-50/90 active:bg-stone-100 transition-colors cursor-pointer space-y-1.5"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono font-bold text-xs text-stone-900">
+                        {order.order_number}
+                      </span>
+                      <span className="text-[10px] font-semibold text-stone-500">
+                        {formatTime(order.order_time)}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-stone-100 text-stone-700 border border-stone-200/70">
+                        {order.payment_method}
+                      </span>
+                      <span className="font-mono font-black text-xs text-amber-950">
+                        {formatCurrency(order.total_amount)}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs text-stone-600">
+                    <p className="text-[11px] text-stone-500 font-medium truncate max-w-[240px]">
+                      {itemsSummary}
+                    </p>
+                    <span className="inline-flex items-center text-[10px] font-bold text-amber-800 shrink-0">
+                      <Receipt className="w-3 h-3 mr-0.5" />
+                      <span>Receipt →</span>
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Desktop & Tablet Table View */}
+          <table className="hidden sm:table w-full text-left border-collapse min-w-[550px]">
             <thead className="sticky top-0 z-10 bg-stone-50/95 backdrop-blur-xs border-b border-stone-200/80 shadow-2xs">
               <tr className="text-[11px] font-semibold text-stone-500 uppercase tracking-wider">
                 <th className="py-2.5 px-3">Order #</th>

@@ -117,13 +117,13 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onGoToPOS }) => {
           </h2>
         </div>
 
-        <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+        <div className="flex items-center gap-2 self-stretch sm:self-auto flex-wrap">
           {hasOrders && (
             <>
               <button
                 type="button"
                 onClick={handleExportCsv}
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold text-stone-700 bg-white border border-stone-200 shadow-2xs hover:bg-stone-50 active:scale-95 transition-all svelte-spring-press"
+                className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-stone-700 bg-white border border-stone-200 shadow-2xs hover:bg-stone-50 active:scale-95 transition-all svelte-spring-press"
               >
                 <Download className="w-3.5 h-3.5 text-stone-500" />
                 <span>Export CSV</span>
@@ -133,7 +133,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onGoToPOS }) => {
                 type="button"
                 onClick={handleClearData}
                 title="Clear all recorded sales data"
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold text-stone-500 hover:text-rose-700 bg-white hover:bg-rose-50 border border-stone-200 shadow-2xs active:scale-95 transition-all svelte-spring-press"
+                className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-stone-500 hover:text-rose-700 bg-white hover:bg-rose-50 border border-stone-200 shadow-2xs active:scale-95 transition-all svelte-spring-press"
               >
                 <Trash2 className="w-3.5 h-3.5" />
                 <span>Clear All</span>
@@ -145,7 +145,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onGoToPOS }) => {
             type="button"
             onClick={loadData}
             disabled={loading}
-            className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-bold text-stone-700 bg-white border border-stone-200 shadow-2xs hover:bg-stone-50 active:scale-95 transition-all disabled:opacity-50 svelte-spring-press"
+            className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold text-stone-700 bg-white border border-stone-200 shadow-2xs hover:bg-stone-50 active:scale-95 transition-all disabled:opacity-50 svelte-spring-press"
           >
             <RefreshCw className={`w-3.5 h-3.5 text-stone-500 ${loading ? 'animate-spin' : ''}`} />
             <span>Refresh</span>

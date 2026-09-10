@@ -50,17 +50,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   const handleCardClick = () => {
-    if (isQuickBilling) {
-      handlePlus();
-    }
+    handlePlus();
   };
 
   return (
     <div
       onClick={handleCardClick}
-      className={`group relative isolate flex flex-col justify-between rounded-2xl overflow-hidden transition-all duration-150 select-none ${
-        isQuickBilling ? 'cursor-pointer' : ''
-      } svelte-spring-hover h-full min-h-0 ${
+      className={`group relative isolate flex flex-col justify-between rounded-2xl overflow-hidden transition-all duration-150 select-none cursor-pointer svelte-spring-hover h-full min-h-0 ${
         hasQuantity
           ? isQuickBilling
             ? 'bg-amber-50/30 border-2 border-amber-900/80 ring-2 ring-amber-900/15 shadow-[0_6px_20px_rgba(120,53,15,0.12)]'

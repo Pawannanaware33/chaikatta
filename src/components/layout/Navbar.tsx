@@ -37,7 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onSelectTab }) => {
             : 'bg-white/70 backdrop-blur-md border-b border-stone-200/50 h-11 sm:h-12'
         }`}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-full flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-3 sm:px-6 h-full flex items-center justify-between">
           {/* Brand Identity with Live Register Beacon & Animated Tea Steam */}
           <div 
             onClick={() => onSelectTab('pos')}

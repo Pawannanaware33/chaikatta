@@ -238,21 +238,22 @@ export const POSPage: React.FC<POSPageProps> = ({
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Quick Billing Toggle */}
           <button
             type="button"
             onClick={toggleQuickBilling}
             title={isQuickBilling ? 'Turn off Quick Billing' : 'Turn on Quick Billing'}
             aria-pressed={isQuickBilling}
-            className={`text-[11px] font-bold px-2.5 py-1 rounded-lg border transition-all active:scale-95 shadow-2xs svelte-spring-press flex items-center gap-1.5 select-none ${
+            className={`text-[11px] font-bold px-2 sm:px-2.5 py-1 rounded-lg border transition-all active:scale-95 shadow-2xs svelte-spring-press flex items-center gap-1 sm:gap-1.5 select-none ${
               isQuickBilling
                 ? 'bg-amber-100/90 border-amber-300 text-amber-950 hover:bg-amber-200/80 ring-1 ring-amber-400/30 font-extrabold'
                 : 'bg-white border-stone-200 text-stone-600 hover:text-stone-900 hover:bg-stone-50'
             }`}
           >
             <span>⚡</span>
-            <span>{isQuickBilling ? 'Quick Billing ON' : 'Quick Billing'}</span>
+            <span className="hidden min-[380px]:inline">{isQuickBilling ? 'Quick Billing ON' : 'Quick Billing'}</span>
+            <span className="min-[380px]:hidden">{isQuickBilling ? 'QB ON' : 'QB'}</span>
           </button>
 
           {/* Desktop Keyboard Shortcuts Help Trigger */}
@@ -273,80 +274,81 @@ export const POSPage: React.FC<POSPageProps> = ({
             <button
               type="button"
               onClick={onResetOrder}
-              className="text-[11px] font-bold text-stone-500 hover:text-rose-600 hover:border-rose-200 hover:bg-rose-50 px-2.5 py-1 rounded-lg border border-stone-200 bg-white transition-all active:scale-95 shadow-2xs svelte-spring-press"
+              className="text-[11px] font-bold text-stone-500 hover:text-rose-600 hover:border-rose-200 hover:bg-rose-50 px-2 sm:px-2.5 py-1 rounded-lg border border-stone-200 bg-white transition-all active:scale-95 shadow-2xs svelte-spring-press"
             >
-              Clear Order
+              Clear
             </button>
           )}
         </div>
       </div>
 
-        {/* Main Responsive Layout: Left 3x3 Grid, Right Cart on Desktop */}
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-2.5 min-h-0 overflow-hidden">
-          {/* Products Grid Column (2 cols on mobile, 3 cols on wider screens, 3x3 on desktop) */}
-          <div className="lg:col-span-8 h-full min-h-0 flex flex-col overflow-y-auto lg:overflow-hidden pb-4 lg:pb-0 relative isolate z-0">
-            {loading ? (
-              <div className="flex flex-col items-center justify-center flex-1 text-stone-500 py-12">
-                <RefreshCw className="w-6 h-6 animate-spin text-stone-600 mb-2" />
-                <p className="text-xs font-medium">Loading menu products...</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 min-[431px]:grid-cols-3 gap-2 sm:gap-2.5 w-full lg:h-full lg:grid-rows-3 min-h-0">
-                {products.map((product, index) => (
-                  <div key={product.id} className="h-[108px] min-[431px]:h-28 lg:h-full lg:max-h-[135px] min-h-0">
-                    <ProductCard
-                      product={product}
-                      quantity={cartQuantities[product.id] || 0}
-                      onIncrement={onIncrement}
-                      onDecrement={onDecrement}
-                      shortcutKey={isQuickBilling && index < 9 ? index + 1 : undefined}
-                      isQuickBilling={isQuickBilling}
-                    />
-                  </div>
-                ))}
+      {/* Main Responsive Layout: Left Grid, Right Cart on Tablets & Desktop */}
+      <div className="flex-1 grid grid-cols-1 md:grid-cols-12 gap-2 sm:gap-2.5 min-h-0 overflow-hidden">
+        {/* Products Grid Column (2 cols on mobile, 3 cols on wider screens, 3x3 on desktop) */}
+        <div className="md:col-span-7 lg:col-span-8 h-full min-h-0 flex flex-col overflow-y-auto md:overflow-hidden pb-4 md:pb-0 relative isolate z-0">
+          {loading ? (
+            <div className="flex flex-col items-center justify-center flex-1 text-stone-500 py-12">
+              <RefreshCw className="w-6 h-6 animate-spin text-stone-600 mb-2" />
+              <p className="text-xs font-medium">Loading menu products...</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 min-[431px]:grid-cols-3 gap-2 sm:gap-2.5 w-full md:h-full md:grid-rows-3 min-h-0">
+              {products.map((product, index) => (
+                <div key={product.id} className="h-[108px] min-[431px]:h-28 md:h-full md:max-h-[135px] min-h-0">
+                  <ProductCard
+                    product={product}
+                    quantity={cartQuantities[product.id] || 0}
+                    onIncrement={onIncrement}
+                    onDecrement={onDecrement}
+                    shortcutKey={isQuickBilling && index < 9 ? index + 1 : undefined}
+                    isQuickBilling={isQuickBilling}
+                  />
+                </div>
+              ))}
 
-                {/* Dynamic Bottom Spacer ensuring full clearance for Sticky Checkout + Bottom Navigation + Safe Area */}
-                <div
-                  style={{
-                    height: `${mobileCheckoutHeight + 52 + 16}px`,
-                  }}
-                  className="col-span-full w-full flex-shrink-0 lg:hidden pointer-events-none"
-                  aria-hidden="true"
-                />
-              </div>
-            )}
-          </div>
-
-          {/* Desktop Order Summary Column (side-by-side, hidden on mobile) */}
-          <div className="hidden lg:flex lg:col-span-4 h-full min-h-0 flex-col overflow-hidden sticky top-0">
-            <CartSummary
-              products={products}
-              cartQuantities={cartQuantities}
-              paymentMethod={paymentMethod}
-              onSelectPaymentMethod={onSelectPaymentMethod}
-              onPlaceOrder={onPlaceOrder}
-              onShowUpiQr={onShowUpiQr}
-              isSubmitting={isSubmitting}
-              isQuickBilling={isQuickBilling}
-            />
-          </div>
+              {/* Dynamic Bottom Spacer ensuring full clearance for Sticky Checkout + Bottom Navigation + Safe Area */}
+              <div
+                style={{
+                  height: `${(totalItemsCount > 0 ? mobileCheckoutHeight : 0) + 52 + 16}px`,
+                }}
+                className="col-span-full w-full flex-shrink-0 md:hidden pointer-events-none"
+                aria-hidden="true"
+              />
+            </div>
+          )}
         </div>
 
-        {/* Mobile Sticky Action Bar */}
-        <MobileCartBar
-          products={products}
-          cartQuantities={cartQuantities}
-          totalItemCount={totalItemsCount}
-          totalAmount={totalAmount}
-          paymentMethod={paymentMethod}
-          onSelectPaymentMethod={onSelectPaymentMethod}
-          onIncrement={onIncrement}
-          onDecrement={onDecrement}
-          onPlaceOrder={onPlaceOrder}
-          onHeightChange={setMobileCheckoutHeight}
-          isSubmitting={isSubmitting}
-          isQuickBilling={isQuickBilling}
-        />
+        {/* Desktop & Tablet Order Summary Column (side-by-side) */}
+        <div className="hidden md:flex md:col-span-5 lg:col-span-4 h-full min-h-0 flex-col overflow-hidden sticky top-0">
+          <CartSummary
+            products={products}
+            cartQuantities={cartQuantities}
+            paymentMethod={paymentMethod}
+            onSelectPaymentMethod={onSelectPaymentMethod}
+            onPlaceOrder={onPlaceOrder}
+            onShowUpiQr={onShowUpiQr}
+            isSubmitting={isSubmitting}
+            isQuickBilling={isQuickBilling}
+          />
+        </div>
+      </div>
+
+      {/* Mobile Sticky Action Bar */}
+      <MobileCartBar
+        products={products}
+        cartQuantities={cartQuantities}
+        totalItemCount={totalItemsCount}
+        totalAmount={totalAmount}
+        paymentMethod={paymentMethod}
+        onSelectPaymentMethod={onSelectPaymentMethod}
+        onIncrement={onIncrement}
+        onDecrement={onDecrement}
+        onPlaceOrder={onPlaceOrder}
+        onShowUpiQr={onShowUpiQr}
+        onHeightChange={setMobileCheckoutHeight}
+        isSubmitting={isSubmitting}
+        isQuickBilling={isQuickBilling}
+      />
 
       {/* Compact Quick Billing Shortcuts Modal (Desktop only) */}
       {showShortcutsHelp && isQuickBilling && (
