@@ -183,4 +183,5 @@ npm run build
 | **TEST 3** | Black Tea × 2, Lemon Tea × 1 | Black Tea = ₹30, Lemon Tea = ₹20, Total = ₹50 | **PASS ✓** |
 | **TEST 4** | Date Filters (Today, Yesterday, Week, Month, Custom) | All KPIs, charts, payment split, and recent orders update dynamically | **PASS ✓** |
 | **TEST 5** | Order History Sorting | Transactions strictly ordered descending (newest first) | **PASS ✓** |#   c h a i k a t t a  
+ #   c h a i k a t t a  
  
